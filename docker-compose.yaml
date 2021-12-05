@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: postgres
+      POSTGRES_DB: test-db
+    ports:
+      - '5432:5432'
+  back:
+    image: test-back-k8s_changed_wrong_func
+    restart: always
+    ports:
+      - 80:80
+  front:
+    image: test-fron-localhost_port80
+    restart: always
+    ports: 
+      - 3000:3000
